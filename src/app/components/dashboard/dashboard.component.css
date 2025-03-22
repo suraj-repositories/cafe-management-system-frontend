@@ -1,0 +1,18 @@
+
+.main-content{
+  transition: all 0.3s ease-in-out;
+  margin-top: 48px;
+}
+.sidebar-margin{
+  transition: all 0.3s ease-in-out;
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .main-content{
+    margin-top: 48px;
+  }
+  .sidebar-margin{
+    margin-left: 0;
+  }
+}
