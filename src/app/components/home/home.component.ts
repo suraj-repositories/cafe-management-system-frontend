@@ -6,7 +6,7 @@ import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterOutlet, NavbarComponent, SidebarComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, NavbarComponent, SidebarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

@@ -1,18 +1,19 @@
 <div class="sidebar" [ngClass]="{'show': isSidebarOpen}">
   <ul class="nav flex-column">
-      <li class="nav-item active">
-        <a class="nav-link text-white" [routerLink]="['/dashboard']" routerLinkActive="active">
+      <li class="nav-item active" [class.active]="isActive('/dashboard')">
+        <a class="nav-link text-white" routerLink="/dashboard">
           <i class="fa fa-home"></i>
           Dashboard
         </a>
 
       </li>
-      <li class="nav-item">
-          <a class="nav-link text-white" [routerLink]="['/category']" routerLinkActive="active">
-            <i class="fa-solid fa-layer-group"></i>
-            Category
-          </a>
+      <li class="nav-item" [class.active]="isActive('/category')">
+        <a class="nav-link text-white" routerLink="/category">
+          <i class="fa-solid fa-layer-group"></i>
+          Category
+        </a>
       </li>
+
       <li class="nav-item">
           <a class="nav-link text-white" href="#">
             <i class="fa-solid fa-box"></i>
