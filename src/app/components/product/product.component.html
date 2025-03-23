@@ -1,0 +1,42 @@
+<div class="page-header mb-4">
+  <div class="d-flex flex-column justify-content-center">
+    <h3 class="main-title">Product</h3>
+    <p class="sub-title">Product Management</p>
+  </div>
+
+ <div class="ms-auto">
+  <app-add-product></app-add-product>
+ </div>
+
+</div>
+
+<div class="card mt-3">
+
+  <table id="datatable" class="table table-bordered">
+    <thead>
+      <tr class="table-dark">
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of users; track user.id){
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

@@ -1,13 +1,8 @@
 <div class="page-header mb-4">
   <div class="d-flex flex-column justify-content-center">
-    <h3 class="main-title">Category</h3>
-    <p class="sub-title">Category Management</p>
+    <h3 class="main-title">Users</h3>
+    <p class="sub-title">User Management</p>
   </div>
-
- <div class="ms-auto">
-  <app-add-category></app-add-category>
- </div>
-
 </div>
 
 <div class="card mt-3">
@@ -16,7 +11,10 @@
     <thead>
       <tr class="table-dark">
         <th>ID</th>
-        <th>Category Name</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Status</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -24,15 +22,11 @@
       @for(user of users; track user.id){
       <tr>
         <td>{{ $index + 1 }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.id }}</td>
         <td>{{ user.email }}</td>
-        <td>
-          <a href="#" class="btn action-btn btn-success">
-            <i class="fa-solid fa-pen-to-square"></i>
-          </a>
-          <a href="#" class="btn action-btn btn-danger">
-            <i class="fa-solid fa-trash"></i>
-          </a>
-        </td>
       </tr>
       }
     </tbody>

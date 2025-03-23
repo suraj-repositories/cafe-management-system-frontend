@@ -1,16 +1,12 @@
 import { AfterViewInit, Component } from '@angular/core';
-import 'datatables.net';
-import { AddCategoryComponent } from './add-category/add-category.component';
-
 
 @Component({
-  selector: 'app-category',
-  imports: [AddCategoryComponent],
-  templateUrl: './category.component.html',
-  styleUrl: './category.component.css'
+  selector: 'app-bill',
+  imports: [],
+  templateUrl: './bill.component.html',
+  styleUrl: './bill.component.css'
 })
-export class CategoryComponent implements AfterViewInit {
-
+export class BillComponent  implements AfterViewInit{
   users = [
     { id: 1, name: 'John Doe', email: 'john@example.com' },
     { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
@@ -20,4 +16,5 @@ export class CategoryComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     ($('#datatable') as any).DataTable();
   }
+
 }

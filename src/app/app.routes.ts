@@ -5,6 +5,9 @@ import { ErrorComponent } from './components/errors/error/error.component';
 import { AuthLayoutComponent } from './components/auth/auth-layout/auth-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './components/category/category.component';
+import { ProductComponent } from './components/product/product.component';
+import { UsersComponent } from './components/users/users.component';
+import { BillComponent } from './components/bill/bill.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,7 +22,10 @@ export const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'category', component: CategoryComponent },
+      { path: 'categories', component: CategoryComponent },
+      { path: 'products', component: ProductComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'bills', component: BillComponent },
     ]
   },
   { path: '**', component: ErrorComponent },

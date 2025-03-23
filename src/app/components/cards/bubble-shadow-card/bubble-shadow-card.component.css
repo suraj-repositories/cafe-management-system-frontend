@@ -1,0 +1,21 @@
+.bubble-shadow:after {
+  position: absolute;
+  top: -65px;
+  right: 80px;
+  width: 150px;
+  height: 150px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.182);
+}
+
+.bubble-shadow::before {
+  position: absolute;
+  top: -10%;
+  right: -140px;
+  width: 300px;
+  height: 300px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.182);
+}

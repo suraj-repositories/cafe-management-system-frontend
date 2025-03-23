@@ -1,0 +1,42 @@
+<div class="page-header mb-4">
+  <div class="d-flex flex-column justify-content-center">
+    <h3 class="main-title">Bill</h3>
+    <p class="sub-title">Billing Management</p>
+  </div>
+</div>
+
+<div class="card mt-3">
+
+  <table id="datatable" class="table table-bordered">
+    <thead>
+      <tr class="table-dark">
+        <th>ID</th>
+        <th>Bill-ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Total</th>
+        <th>Method</th>
+        <th>Seller</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of users; track user.id){
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+        <td>BILL-1735713898926</td>
+
+        <td>{{ user.email }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

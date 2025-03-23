@@ -1,0 +1,11 @@
+.skew-shadow:before {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.182);
+  width: 50%;
+  min-width: 150px;
+  height: 100%;
+  top: 0;
+  right: -25%;
+  transform: skewX(-32.5deg);
+}

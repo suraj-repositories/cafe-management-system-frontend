@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 
@@ -45,7 +44,8 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-body{
+
+body {
   font-family: 'Poppins', sans-serif !important;
   font-size: 1rem;
   height: 100vh !important;
@@ -55,36 +55,47 @@ body{
   background-color: #F5F7FD !important;
 }
 
-.text-soft-danger{
+.text-soft-danger {
   color: #ff7777 !important;
 }
 
-.main-content{
+.btn-primary {
+  background-color: var(--orange) !important;
+  border-color: var(--orange) !important;
+  color: var(--white) !important;
+}
+
+.main-content {
   transition: all 0.3s ease-in-out;
   margin-top: 56px;
   color: var(--dark);
 }
-.sidebar-margin{
+
+.sidebar-margin {
   transition: all 0.3s ease-in-out;
   margin-left: 250px;
 }
 
 @media (max-width: 768px) {
-  .main-content{
+  .main-content {
     margin-top: 48px;
   }
-  .sidebar-margin{
+
+  .sidebar-margin {
     margin-left: 0;
   }
 }
-.main-content .main-title{
+
+.main-content .main-title {
   color: var(--gray-dark);
   font-weight: 700;
 }
-.main-content p.sub-title{
+
+.main-content p.sub-title {
   position: relative;
   bottom: 3px;
   color: rgba(128, 128, 128, 0.858);
+  margin-bottom: 0;
 }
 
 /* dashboard  card style start */
@@ -102,25 +113,16 @@ body{
   clip-path: inset(0 0 0 0);
 }
 
-.card-secondary {
+.card.card-secondary {
   background: var(--orange) !important;
   color: #fff !important;
   border: 0 !important;
 }
-.skew-shadow:before {
-  content: '';
-  position: absolute;
-  background: rgba(255, 255, 255, 0.182);
-  width: 50%;
-  min-width: 150px;
-  height: 100%;
-  top: 0;
-  right: -25%;
-  transform: skewX(-32.5deg);
-}
+
 .pull-right {
   float: right;
 }
+
 .op-8 {
   opacity: .8 !important;
 }
@@ -129,41 +131,12 @@ body{
   font-size: 1.3rem;
   font-weight: 400;
 }
-.bubble-shadow:before {
-  position: absolute;
-  top: -10%;
-  right: -140px;
-  width: 300px;
-  height: 300px;
-  content: "";
-  border-radius: 50%;
-  background:rgba(255, 255, 255, 0.182);
-}
 
-.bubble-shadow:after {
-  position: absolute;
-  top: -65px;
-  right: 80px;
-  width: 150px;
-  height: 150px;
-  content: "";
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.182);
-}
-.curves-shadow:before {
-  content: '';
-  position: absolute;
-  background: url(/images/background/img-shadow.png);
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
 /* dashboard  card style end */
 
 /* another cards */
-.card, .card-light {
+.card,
+.card-light {
   border-radius: 10px;
   background-color: #fff;
   margin-bottom: 30px;
@@ -180,14 +153,121 @@ body{
 .bg-orange {
   background-color: #FD953E !important;
 }
+
 .text-orange {
   color: #FD953E !important;
 }
-.progress-cards .progress{
+
+.progress-cards .progress {
   height: 5px;
   border-radius: 5px;
 }
 
-.card{
+.card {
   margin-bottom: 0;
+  background-color: var(--white) !important;
+  border: none !important;
+  padding: 15px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+}
+
+.page-header button.right-btn {
+  margin-left: auto;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 0 15px;
+  color: var(--white);
+  background-color: var(--orange);
+}
+
+.dt-container label {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.dark-bg {
+  background-color: var(--gray-dark) !important;
+  color: var(--white) !important;
+}
+
+.dt-layout-cell,
+.dt-layout-full {
+  overflow-x: auto;
+}
+
+.modal-content {
+  border-radius: none !important;
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  border: 0 !important;
+  justify-content: space-between;
+}
+
+.modal-header button.close {
+  border: none;
+  background-color: transparent;
+}
+
+.modal-header .close i {
+  font-size: 30px;
+  color: var(--dark);
+  opacity: 1;
+  border: 0;
+}
+
+.modal-header .close i:hover {
+  color: var(--orange);
+}
+
+.modal .modal-title {
+  font-weight: 600;
+}
+
+.modal-footer {
+  border: 0 !important;
+}
+
+.table-dark,
+.table-dark th {
+  background-color: var(--gray-dark) !important;
+  color: var(--white) !important;
+}
+
+.action-btn {
+  border: none;
+  color: var(--gray-dark) !important;
+  border: none !important;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  margin-right: 10px;
+  border-radius: 3px !important;
+}
+
+.action-btn i {
+  font-size: 18px;
+}
+
+.action-btn.btn-danger {
+  background-color: #ffaab385 !important;
+  color: #ff3f3f !important;
+  border: 1px solid #ff3f3f !important;
+}
+
+.action-btn.btn-success {
+  background-color: #ceffdeba !important;
+  color: #42b619 !important;
+  border: 1px solid #42b619 !important;
 }
