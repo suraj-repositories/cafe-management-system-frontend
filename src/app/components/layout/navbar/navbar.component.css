@@ -1,4 +1,16 @@
-  /* Navbar height */
+
   .navbar {
-    height: 56px; /* Default Bootstrap navbar height */
-}
+    height: 56px;
+    color: var(--dark);
+    box-shadow: 0 2px 15px 0 rgb(27 24 19 / 19%);
+  }
+
+  .navbar .hamburger-toggler {
+    font-size: 1.2rem;
+    color: var(--dark) !important;
+  }
+
+  .navbar .navbar-brand {
+    color: var(--dark);
+    font-weight: 700;
+  }
