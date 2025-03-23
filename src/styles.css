@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -38,12 +41,23 @@
 }
 
 html {
-  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+body{
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1rem;
+  height: 100vh !important;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #F5F7FD !important;
+}
 
+.text-soft-danger{
+  color: #ff7777 !important;
+}
 
 .main-content{
   transition: all 0.3s ease-in-out;
@@ -63,7 +77,114 @@ html {
     margin-left: 0;
   }
 }
+.main-content .main-title{
+  color: var(--gray-dark);
+  font-weight: 700;
+}
+.main-content p.sub-title{
+  position: relative;
+  bottom: 3px;
+  color: rgba(128, 128, 128, 0.858);
+}
 
+/* dashboard  card style start */
 
+.card-secondary {
+  overflow: hidden;
+}
 
+.skew-shadow::before,
+.bubble-shadow::before,
+.bubble-shadow::after,
+.curves-shadow::before {
+  max-width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
 
+.card-secondary {
+  background: var(--orange) !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+.skew-shadow:before {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.182);
+  width: 50%;
+  min-width: 150px;
+  height: 100%;
+  top: 0;
+  right: -25%;
+  transform: skewX(-32.5deg);
+}
+.pull-right {
+  float: right;
+}
+.op-8 {
+  opacity: .8 !important;
+}
+
+.card-secondary h5 {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.bubble-shadow:before {
+  position: absolute;
+  top: -10%;
+  right: -140px;
+  width: 300px;
+  height: 300px;
+  content: "";
+  border-radius: 50%;
+  background:rgba(255, 255, 255, 0.182);
+}
+
+.bubble-shadow:after {
+  position: absolute;
+  top: -65px;
+  right: 80px;
+  width: 150px;
+  height: 150px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.182);
+}
+.curves-shadow:before {
+  content: '';
+  position: absolute;
+  background: url(/images/background/img-shadow.png);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+/* dashboard  card style end */
+
+/* another cards */
+.card, .card-light {
+  border-radius: 10px;
+  background-color: #fff;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 2px 6px 15px 0 rgba(69, 65, 78, .1);
+  -moz-box-shadow: 2px 6px 15px 0 rgba(69, 65, 78, .1);
+  box-shadow: 2px 6px 15px 0 rgba(69, 65, 78, .1);
+  border: 0;
+}
+
+.fw-bold {
+  font-weight: 600 !important;
+}
+
+.bg-orange {
+  background-color: #FD953E !important;
+}
+.text-orange {
+  color: #FD953E !important;
+}
+.progress-cards .progress{
+  height: 5px;
+  border-radius: 5px;
+}
+/* another cards */

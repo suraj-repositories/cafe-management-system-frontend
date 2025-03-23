@@ -7,23 +7,10 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginComponent, NavbarComponent, SidebarComponent, DashboardComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  isSidebarOpen: boolean = window.innerWidth >= 992;
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
-  @HostListener('window:resize', [])
-  onResize() {
-    if (window.innerWidth >= 992) {
-      this.isSidebarOpen = true;
-    }else{
-      this.isSidebarOpen = false;
-    }
-  }
 }
