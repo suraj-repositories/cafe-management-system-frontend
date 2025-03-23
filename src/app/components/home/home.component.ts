@@ -1,28 +1,25 @@
 import { Component, HostListener } from '@angular/core';
-import { LoginComponent } from '../auth/login/login.component';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-home',
-  imports: [LoginComponent, NavbarComponent, SidebarComponent, DashboardComponent],
+  imports: [RouterOutlet, NavbarComponent, SidebarComponent, RouterLink, RouterLinkActive],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  isSidebarOpen: boolean = window.innerWidth >= 992;
+  isSidebarOpen: boolean;
+
+  constructor(private sidebarService: SidebarService) {
+    this.isSidebarOpen = window.innerWidth >= 992;
+    this.sidebarService.setSidebarState(this.isSidebarOpen);
+  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
-  @HostListener('window:resize', [])
-  onResize() {
-    if (window.innerWidth >= 992) {
-      this.isSidebarOpen = true;
-    }else{
-      this.isSidebarOpen = false;
-    }
+    this.sidebarService.setSidebarState(this.isSidebarOpen);
   }
 }

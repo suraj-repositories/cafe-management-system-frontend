@@ -1,14 +1,14 @@
 <div class="sidebar" [ngClass]="{'show': isSidebarOpen}">
-  <!-- <h5 class="mb-4">Sidebar</h5> -->
   <ul class="nav flex-column">
       <li class="nav-item active">
-          <a class="nav-link text-white" href="#">
-            <i class="fa fa-home"></i>
-            Dashboard
-          </a>
+        <a class="nav-link text-white" [routerLink]="['/dashboard']" routerLinkActive="active">
+          <i class="fa fa-home"></i>
+          Dashboard
+        </a>
+
       </li>
       <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" [routerLink]="['/category']" routerLinkActive="active">
             <i class="fa-solid fa-layer-group"></i>
             Category
           </a>

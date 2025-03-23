@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input} from '@angular/core';
 import { AnalysisCardsComponent } from './analysis-cards/analysis-cards.component';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,12 @@ import { AnalysisCardsComponent } from './analysis-cards/analysis-cards.componen
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent{
-  @Input() isSidebarOpen:boolean = false;
 
+  isSidebarOpen: boolean = false;
+
+  constructor(private sidebarService: SidebarService) {
+    this.sidebarService.isSidebarOpen$.subscribe((state) => {
+      this.isSidebarOpen = state;
+    });
+  }
 }

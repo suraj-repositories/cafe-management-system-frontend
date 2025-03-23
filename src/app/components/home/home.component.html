@@ -1,3 +1,7 @@
 <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
 <app-sidebar [isSidebarOpen]="isSidebarOpen"></app-sidebar>
-<app-dashboard  [isSidebarOpen]="isSidebarOpen"></app-dashboard>
+
+
+<div class="main-content p-4  {{isSidebarOpen ? 'sidebar-margin' : ''}}">
+  <router-outlet></router-outlet>
+</div>

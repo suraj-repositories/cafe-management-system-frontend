@@ -61,7 +61,7 @@ body{
 
 .main-content{
   transition: all 0.3s ease-in-out;
-  margin-top: 48px;
+  margin-top: 56px;
   color: var(--dark);
 }
 .sidebar-margin{
@@ -187,4 +187,7 @@ body{
   height: 5px;
   border-radius: 5px;
 }
-/* another cards */
+
+.card{
+  margin-bottom: 0;
+}
