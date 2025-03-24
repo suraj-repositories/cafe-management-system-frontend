@@ -69,7 +69,7 @@ body {
 
 .main-content {
   transition: all 0.3s ease-in-out;
-  margin-top: 56px;
+  margin-top: 70px;
   color: var(--dark);
 }
 
@@ -80,7 +80,7 @@ body {
 
 @media (max-width: 768px) {
   .main-content {
-    margin-top: 48px;
+    margin-top: 70px;
   }
 
   .sidebar-margin {
@@ -183,10 +183,13 @@ body {
   margin-left: auto;
   border: none;
   padding: 10px 15px;
-  border-radius: 0 15px;
+  border-radius: 0 7px;
   color: var(--white);
   background-color: var(--orange);
   outline: none !important;
+}
+.btn{
+  border-radius: 0 7px !important;
 }
 
 .dt-container label {

@@ -2,10 +2,10 @@
   <i class="fa-solid fa-plus"></i>
   Add Category</button>
 
-  <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel">
+<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form (submit)="submitCategory()" action="#">
+      <form (submit)="submitCategory()" #categoryForm="ngForm">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="createCategoryModalLabel">
             {{ mode === 'edit' ? 'Edit' : 'Add' }} Category
@@ -17,13 +17,14 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="category-name" class="form-label">Category Name</label>
-            <input type="text" class="form-control" [(ngModel)]="name" name="name" id="category-name" #categoryNameInput
-              required />
+            <input type="text" class="form-control" [(ngModel)]="name" name="name" id="category-name"
+              #categoryNameInput="ngModel" required />
+
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" type="submit">
+          <button class="btn btn-primary" type="submit"  [disabled]="categoryForm.invalid">
             {{ mode === 'edit' ? 'Update' : 'Add' }} Category
           </button>
         </div>
