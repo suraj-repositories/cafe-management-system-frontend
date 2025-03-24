@@ -11683,7 +11683,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #e3b04b;
+  color: orange;
 }
 
 a:hover,
@@ -11711,7 +11711,7 @@ h5,
 }
 
 .bg-primary {
-  background: #e3b04b !important;
+  background: orange !important;
 }
 
 .ftco-section {
@@ -11824,7 +11824,7 @@ h5,
   outline: none !important;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #e3b04b;
+  border: 1px solid orange;
 }
 
 .social-media {
@@ -11837,7 +11837,7 @@ h5,
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid orange;
   font-size: 16px;
   margin-right: 5px;
   border-radius: 50%;
@@ -11849,7 +11849,7 @@ h5,
 
 .social-media .social-icon:hover,
 .social-media .social-icon:focus {
-  background: #e3b04b;
+  background: oldlace;
 }
 
 .social-media .social-icon:hover span,
@@ -11918,11 +11918,11 @@ h5,
 
 /* Style the checkmark/indicator */
 .checkbox-primary {
-  color: #e3b04b;
+  color: orange;
 }
 
 .checkbox-primary input:checked~.checkmark:after {
-  color: #e3b04b;
+  color: orange;
 }
 
 .btn {
@@ -11940,25 +11940,25 @@ h5,
 }
 
 .btn.btn-primary {
-  background: #e3b04b !important;
-  border: 1px solid #e3b04b !important;
+  background: orange !important;
+  border: 1px solid orange !important;
   color: #fff !important;
 }
 
 .btn.btn-primary:hover {
-  border: 1px solid #e3b04b;
+  border: 1px solid orange;
   background: transparent;
-  color: #e3b04b;
+  color: orange;
 }
 
 .btn.btn-primary.btn-outline-primary {
-  border: 1px solid #e3b04b;
+  border: 1px solid orange;
   background: transparent;
-  color: #e3b04b;
+  color: orange;
 }
 
 .btn.btn-primary.btn-outline-primary:hover {
   border: 1px solid transparent;
-  background: #e3b04b;
+  background: orange;
   color: #fff;
 }

@@ -8,6 +8,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { UsersComponent } from './components/users/users.component';
 import { BillComponent } from './components/bill/bill.component';
+import { authGuard } from './guards/auth.guard';
+import { guestGuard } from './guards/guest.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,11 +17,13 @@ export const routes: Routes = [
   {
     path: 'login',
     component: AuthLayoutComponent,
+    canActivate: [guestGuard],
     children: [{ path: '', component: LoginComponent }]
   },
   {
     path: '',
     component: HomeComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'categories', component: CategoryComponent },
