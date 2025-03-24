@@ -144,17 +144,5 @@ export class CategoryComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  // openForEdit(category: { id: number; name: string }) {
-  //   console.log('Editing category:', category);
-  //   this.mode = 'edit';
-  //   this.categoryId = category.id;
-  //   this.name = category.name;
-
-  //   const modalElement = document.getElementById('createCategoryModal');
-  //   if (modalElement) {
-  //     const modal = new bootstrap.Modal(modalElement);
-  //     modal.show();
-  //   }
-  // }
 
 }

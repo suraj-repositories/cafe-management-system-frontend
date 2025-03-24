@@ -40,9 +40,12 @@ export class AddCategoryComponent {
     this.mode = 'add';
     this.categoryId = null;
     this.name = '';
-    $('#createCategoryModal').on('hidden.bs.modal', function () {
-      $('.modal-backdrop').remove();
-  });
+
+    const modalElement = document.getElementById('createCategoryModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
 
   submitCategory(): void {
