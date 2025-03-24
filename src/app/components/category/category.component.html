@@ -5,7 +5,7 @@
   </div>
 
  <div class="ms-auto">
-  <app-add-category></app-add-category>
+  <app-add-category  (categoryAdded)="onCategoryAdded()"></app-add-category>
  </div>
 
 </div>
@@ -21,19 +21,19 @@
       </tr>
     </thead>
     <tbody>
-      @for(user of users; track user.id){
-      <tr>
-        <td>{{ $index + 1 }}</td>
-        <td>{{ user.email }}</td>
-        <td>
-          <a href="#" class="btn action-btn btn-success">
-            <i class="fa-solid fa-pen-to-square"></i>
-          </a>
-          <a href="#" class="btn action-btn btn-danger">
-            <i class="fa-solid fa-trash"></i>
-          </a>
-        </td>
-      </tr>
+      @for (category of categories; track category.id) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ category['name'] }}</td>
+          <td>
+            <a href="#" class="btn action-btn btn-success">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <button class="btn action-btn btn-danger" (click)="deleteCategory(category.id)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
       }
     </tbody>
   </table>

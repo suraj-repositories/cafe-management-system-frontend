@@ -39,7 +39,7 @@ body{
 
 .toastify.toastBox{
     position: absolute;
-    top: 5px;
+    top: -10px;
     right: 0px;
     display: flex;
     align-items: flex-end;
@@ -48,6 +48,7 @@ body{
     padding: 20px;
     padding-right: 30px;
     font-family: 'Poppins', sans-serif;
+    z-index: 1500;
 }
 
 .toastify.toastBox .toast{

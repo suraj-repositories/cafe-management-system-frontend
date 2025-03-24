@@ -177,13 +177,16 @@ body {
   align-items: center;
 }
 
-.page-header button.right-btn {
+.page-header button.right-btn,
+.page-header button.right-btn:focus-visible
+ {
   margin-left: auto;
   border: none;
   padding: 10px 15px;
   border-radius: 0 15px;
   color: var(--white);
   background-color: var(--orange);
+  outline: none !important;
 }
 
 .dt-container label {
@@ -264,12 +267,12 @@ body {
 
 .action-btn.btn-danger {
   background-color: #ffaab385 !important;
-  color: #ff3f3f !important;
-  border: 1px solid #ff3f3f !important;
+  color: #ff6565 !important;
+  border: 1px solid #ffb3b3 !important;
 }
 
 .action-btn.btn-success {
   background-color: #ceffdeba !important;
-  color: #42b619 !important;
-  border: 1px solid #42b619 !important;
+  color: #3bba0de6 !important;
+  border: 1px solid #9ce382a1 !important;
 }
