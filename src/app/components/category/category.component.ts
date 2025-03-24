@@ -1,8 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import 'datatables.net';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryService } from '../../services/category.service';
 import { ToastService } from '../../services/toast.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-category',
@@ -10,17 +11,37 @@ import { ToastService } from '../../services/toast.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
 })
-export class CategoryComponent implements OnInit, OnDestroy {
+export class CategoryComponent implements OnInit, OnDestroy, AfterViewInit {
   categories: any[] = [];
   dataTable: any;
   isDataTableInitialized = false;
+
+  name = '';
+  mode: 'add' | 'edit' = 'add';
+  categoryId: number | null = null;
+  @ViewChild(AddCategoryComponent) addCategoryComponent!: AddCategoryComponent;
+
 
   constructor(
     private categoryService: CategoryService,
     private cdRef: ChangeDetectorRef,
     private renderer: Renderer2,
     private toastService: ToastService,
-  ) {}
+
+  ) { }
+
+
+  ngAfterViewInit() {
+    console.log('addCategoryComponent:', this.addCategoryComponent);
+  }
+
+  openEditModal(category: any) {
+    if (this.addCategoryComponent && this.addCategoryComponent.openForEdit) {
+      this.addCategoryComponent.openForEdit(category);
+    } else {
+      console.error("addCategoryComponent is not initialized or openForEdit is missing.");
+    }
+  }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -43,7 +64,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
             data: this.categories.map((category, index) => [
               index + 1,
               category.name,
-              this.renderActionButtons(category.id),
+              this.renderActionButtons(category),
             ]),
             columns: [
               { title: 'ID' },
@@ -51,13 +72,22 @@ export class CategoryComponent implements OnInit, OnDestroy {
               { title: 'Actions' },
             ],
             createdRow: (row: any, data: any, dataIndex: any) => {
+              const editBtn = row.querySelector('.edit-btn');
+              if (editBtn) {
+                this.renderer.listen(editBtn, 'click', () => {
+                  const category = this.categories[dataIndex];
+                  this.openEditModal(category);
+                })
+              };
+
               const deleteBtn = row.querySelector('.delete-btn');
               if (deleteBtn) {
                 this.renderer.listen(deleteBtn, 'click', () => {
                   this.deleteCategory(this.categories[dataIndex].id);
                 });
               }
-            },
+            }
+
           });
           this.isDataTableInitialized = true;
         } else {
@@ -66,7 +96,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
             this.dataTable.row.add([
               index + 1,
               category.name,
-              this.renderActionButtons(category.id),
+              this.renderActionButtons(category),
             ]);
           });
           this.dataTable.draw();
@@ -79,17 +109,21 @@ export class CategoryComponent implements OnInit, OnDestroy {
   onCategoryAdded(): void {
     this.loadCategories();
   }
+  onCategoryUpdated(): void {
+    this.loadCategories();
+  }
 
-  private renderActionButtons(categoryId: number): string {
+  private renderActionButtons(category: any): string {
     return `
-      <a href="#" class="btn action-btn btn-success">
+      <button class="btn action-btn btn-success edit-btn" data-id="${category.id}" data-name="${category.name}">
         <i class="fa-solid fa-pen-to-square"></i>
-      </a>
-      <button class="btn action-btn btn-danger delete-btn" data-id="${categoryId}">
+      </button>
+      <button class="btn action-btn btn-danger delete-btn" data-id="${category.id}">
         <i class="fa-solid fa-trash"></i>
       </button>
     `;
   }
+
 
   deleteCategory(categoryId: any): void {
     this.categoryService.destroy(categoryId).subscribe({
@@ -101,14 +135,26 @@ export class CategoryComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error(error);
-        if(error.error.message){
+        if (error.error.message) {
           this.toastService.error(error.error.message);
-        }else{
+        } else {
           this.toastService.error("Deletion Failed : ", error.message);
         }
       },
     });
   }
 
+  // openForEdit(category: { id: number; name: string }) {
+  //   console.log('Editing category:', category);
+  //   this.mode = 'edit';
+  //   this.categoryId = category.id;
+  //   this.name = category.name;
+
+  //   const modalElement = document.getElementById('createCategoryModal');
+  //   if (modalElement) {
+  //     const modal = new bootstrap.Modal(modalElement);
+  //     modal.show();
+  //   }
+  // }
 
 }

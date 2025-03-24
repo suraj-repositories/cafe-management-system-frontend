@@ -12,7 +12,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-  store(name: string): Observable<{name: string}>{
+  store(name: string): Observable<{ name: string }> {
 
     const token = localStorage.getItem('token');
 
@@ -21,14 +21,14 @@ export class CategoryService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<{name: string}>(`${this.apiUrl}/add`, {name}, {headers}).pipe(
+    return this.http.post<{ name: string }>(`${this.apiUrl}/add`, { name }, { headers }).pipe(
       tap(response => {
         console.log(response);
       })
     );
   }
 
-  getAll(): Observable<any[]>{
+  getAll(): Observable<any[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
@@ -55,6 +55,24 @@ export class CategoryService {
     );
   }
 
+  update(id: any, name: string) {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<{ message: string; success?: boolean }>(
+      `${this.apiUrl}/update`,
+      { id, name },
+      { headers }
+    ).pipe(
+      tap(response => {
+        console.log(response);
+      })
+    );
+  }
 
 
 }
