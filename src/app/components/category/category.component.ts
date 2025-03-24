@@ -70,7 +70,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
             ]);
           });
           this.dataTable.draw();
-          //this.attachDeleteEventListeners();
         }
       },
       error: (error) => console.error(error),
@@ -92,19 +91,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
     `;
   }
 
-  // private attachDeleteEventListeners() {
-  //   setTimeout(() => {
-  //     document.querySelectorAll('.delete-btn').forEach((button) => {
-  //       const categoryId = button.getAttribute('data-id');
-  //       // this.renderer.listen(button, 'click', () => {
-  //       //   if (categoryId) {
-  //       //     this.deleteCategory(parseInt(categoryId));
-  //       //   }
-  //       // });
-  //     });
-  //   }, 100);
-  // }
-
   deleteCategory(categoryId: any): void {
     this.categoryService.destroy(categoryId).subscribe({
       next: (response) => {
@@ -123,4 +109,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+
 }
