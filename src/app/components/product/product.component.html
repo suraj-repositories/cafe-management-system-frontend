@@ -5,7 +5,7 @@
   </div>
 
  <div class="ms-auto">
-  <app-add-product></app-add-product>
+  <app-add-product (productAdded)="onProdctAdded()" (productUpdated)="onProductUpdated()"></app-add-product>
  </div>
 
 </div>
@@ -25,15 +25,22 @@
       </tr>
     </thead>
     <tbody>
-      @for(user of users; track user.id){
+      @for(product of products; track product.id){
         <tr>
           <td>{{ $index + 1 }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.email }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.categoryName }}</td>
+          <td>{{ this.currency + product.price }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.status }}</td>
+          <td>
+            <button class="btn action-btn btn-success" (click)="openEditModal(product)">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="btn action-btn btn-danger" (click)="deleteCategory(product.id)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
         </tr>
       }
     </tbody>

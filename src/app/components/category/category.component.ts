@@ -21,7 +21,6 @@ export class CategoryComponent implements OnInit, OnDestroy, AfterViewInit {
   categoryId: number | null = null;
   @ViewChild(AddCategoryComponent) addCategoryComponent!: AddCategoryComponent;
 
-
   constructor(
     private categoryService: CategoryService,
     private cdRef: ChangeDetectorRef,
