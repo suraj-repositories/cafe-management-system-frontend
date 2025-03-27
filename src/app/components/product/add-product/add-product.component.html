@@ -1,56 +1,62 @@
-<button class="right-btn"  data-bs-toggle="modal" data-bs-target="#createProductModal">
+<button class="right-btn"  (click)="openForAdd()">
   <i class="fa-solid fa-plus"></i>
   Add Product</button>
 
-  <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
+        <form (submit)="submitProduct()" #productForm="ngForm" >
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="createProductModalLabel">Add Product</h1>
-          <button type="button" class="close mr-2" data-bs-dismiss="modal" aria-label="Close" fdprocessedid="1rb5pn">
+          <h1 class="modal-title fs-5" id="productModalLabel">
+            {{ mode === 'edit' ? 'Edit' : 'Add' }} Product
+          </h1>
+          <button type="button" class="close mr-2" data-bs-dismiss="modal" aria-label="Close" fdprocessedid="1rb5pn" #closeModalButton>
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
         <div class="modal-body">
-          <form action="" >
             <div class="mb-3">
               <label for="Product-name" class="form-label">Product Name</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="product-name"> <i class="fa-solid fa-heading"></i> </span>
-                <input type="text" class="form-control" placeholder="product name...">
+                <input type="text"  [(ngModel)]="name" name="name" #productNameInput="ngModel" required class="form-control" placeholder="product name...">
               </div>
             </div>
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="category"> <i class="fa-solid fa-layer-group"></i> </span>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" [(ngModel)]="categoryId" name="categoryId" #categoryIdInput="ngModel" required  aria-label="Default select example" required>
                   <option selected disabled value="">--select--</option>
-                  <option value="1">One</option>
+                  @for(category of categories; track category.id){
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                  }
                 </select>
               </div>
             </div>
             <div class="mb-3">
-              <label for="amount" class="form-label">Amount</label>
+              <label for="amount" class="form-label">Price</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="amount"> <i class="fa-solid fa-indian-rupee-sign"></i> </span>
-                <input type="text" class="form-control" placeholder="0.00">
+                <input type="text" [(ngModel)]="price" name="price" #productPriceInput="ngModel" required  class="form-control" placeholder="0.00">
               </div>
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Description</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="description"> <i class="fa-regular fa-file-lines"></i> </span>
-                <input type="text" class="form-control" placeholder="Description of product...">
+                <input type="text" [(ngModel)]="description" name="description" #productDescrptionInput="ngModel" required  class="form-control" placeholder="Description of product...">
               </div>
             </div>
 
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary">Add Product</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  [disabled]="productForm.invalid">
+              {{ mode === 'edit' ? 'Update' : 'Add' }} Product
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

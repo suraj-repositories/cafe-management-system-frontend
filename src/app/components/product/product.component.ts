@@ -13,14 +13,10 @@ import { environment } from '../../environments/environment';
 })
 export class ProductComponent  implements AfterViewInit{
   products: any[] = [];
+
   dataTable:any;
   isDataTableInitialized = false;
 
-  name: string = '';
-  categoryId: number | null = null;
-  productId: number | null = null;
-  price = 0;
-  description = '';
   currency = environment.currency;
 
   @ViewChild(AddProductComponent) AddProductComponent!: AddProductComponent;
@@ -32,13 +28,6 @@ export class ProductComponent  implements AfterViewInit{
     private renderer: Renderer2,
     private toastService: ToastService,
   ){}
-
-
-  users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
-    { id: 3, name: 'Mark Smith', email: 'mark@example.com' }
-  ];
 
   ngAfterViewInit(): void {
 
@@ -122,6 +111,8 @@ export class ProductComponent  implements AfterViewInit{
         <i class="fa-solid fa-trash"></i>
       </button>`;
   }
+
+
 
   openEditModal(product: any){
     // if(this.AddProductComponent && this.AddProductComponent.openForEdit){
