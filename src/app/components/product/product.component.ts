@@ -11,10 +11,10 @@ import { environment } from '../../environments/environment';
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent  implements AfterViewInit{
+export class ProductComponent implements AfterViewInit {
   products: any[] = [];
 
-  dataTable:any;
+  dataTable: any;
   isDataTableInitialized = false;
 
   currency = environment.currency;
@@ -27,7 +27,7 @@ export class ProductComponent  implements AfterViewInit{
     private cdRef: ChangeDetectorRef,
     private renderer: Renderer2,
     private toastService: ToastService,
-  ){}
+  ) { }
 
   ngAfterViewInit(): void {
 
@@ -37,13 +37,13 @@ export class ProductComponent  implements AfterViewInit{
     this.loadProducts();
   }
 
-  loadProducts(){
+  loadProducts() {
     this.productService.getAll().subscribe({
       next: (response) => {
         this.products = [...response];
         this.cdRef.detectChanges();
 
-        if(!this.isDataTableInitialized){
+        if (!this.isDataTableInitialized) {
           this.dataTable = ($('#datatable') as any).DataTable({
             data: this.products.map((product, index) => [
               index + 1,
@@ -51,7 +51,7 @@ export class ProductComponent  implements AfterViewInit{
               product.categoryName,
               this.currency + product.price,
               product.description,
-              product.status,
+              this.renderStatusSwitch(product),
               this.renderActionButtons(product),
             ]),
             columns: [
@@ -64,9 +64,9 @@ export class ProductComponent  implements AfterViewInit{
               { title: 'Actions' },
             ],
             createdRow: (row: any, data: any, dataIndex: any) => {
-              const editBtn = row.querySelector('.edti-btn');
-              if(editBtn){
-                this.renderer.listen(editBtn, 'click', ()=>{
+              const editBtn = row.querySelector('.edit-btn');
+              if (editBtn) {
+                this.renderer.listen(editBtn, 'click', () => {
                   const product = this.products[dataIndex];
                   this.openEditModal(product);
                 });
@@ -75,14 +75,14 @@ export class ProductComponent  implements AfterViewInit{
               const deleteBtn = row.querySelector('.delete-btn');
               if (deleteBtn) {
                 this.renderer.listen(deleteBtn, 'click', () => {
-                  this.deleteCategory(this.products[dataIndex].id);
+                  this.deleteProduct(this.products[dataIndex].id);
                 });
               }
             }
           });
 
           this.isDataTableInitialized = true;
-        }else{
+        } else {
           this.dataTable.clear();
           this.products.forEach((product, index) => {
             this.dataTable.row.add([
@@ -91,7 +91,7 @@ export class ProductComponent  implements AfterViewInit{
               product.categoryName,
               this.currency + product.price,
               product.description,
-              product.status,
+              this.renderStatusSwitch(product),
               this.renderActionButtons(product),
             ]);
           });
@@ -102,27 +102,52 @@ export class ProductComponent  implements AfterViewInit{
     });
   }
 
-  private renderActionButtons(product: any): string{
+  private renderActionButtons(product: any): string {
     return `
-      <button class="btn action-btn btn-success edit-btn" data-id="${product.id}" data-name="${product.name} data-category-name="${product.categoryName}" data-category-id="${product.categoryId}" data-product-price="${product.price}" data-product-description="${product.description}" ">
+      <button class="btn action-btn btn-success edit-btn" data-id="${product.id}" data-name="${product.name} data-category-name="${product.categoryName}" data-category-id="${product.categoryId}" data-product-price="${product.price}" data-product-description="${product.description}">
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
       <button class="btn action-btn btn-danger delete-btn" data-id="${product.id}">
         <i class="fa-solid fa-trash"></i>
       </button>`;
   }
-
-
-
-  openEditModal(product: any){
-    // if(this.AddProductComponent && this.AddProductComponent.openForEdit){
-    //   this.AddProductComponent.openForEdit(product);
-    // }
+  private renderStatusSwitch(product: any): string {
+    return `
+        <input type="checkbox" name="status" id="status"
+            ${product.status ? 'checked' : ''}
+            class="switch">
+    `;
   }
 
-  deleteCategory(productId: any){
+  openEditModal(product: any) {
 
+    if(this.AddProductComponent && this.AddProductComponent.openForEdit){
+      this.AddProductComponent.openForEdit(product);
+    }
+    else{
+      console.error('AddProductComponent or openForEdit method not found!');
+    }
   }
+
+  deleteProduct(productId: any): void {
+    this.productService.destroy(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.toastService.success(response.message);
+        this.loadProducts();
+
+      },
+      error: (error) => {
+        console.error(error);
+        if (error.error.message) {
+          this.toastService.error(error.error.message);
+        } else {
+          this.toastService.error("Deletion Failed : ", error.message);
+        }
+      },
+    });
+  }
+
 
 
   onProdctAdded(): void {

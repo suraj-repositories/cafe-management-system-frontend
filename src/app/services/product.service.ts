@@ -38,5 +38,34 @@ export class ProductService {
       })
     );;
   }
+  update(id: bigint, name: string, categoryId: number, price: number, description: string): Observable<{ id: bigint, name: string; categoryId: number; price: number; description: string }> {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    const product = { id, name, categoryId, price, description };
+    return this.http.post<{ id: bigint; name: string; categoryId: number; price: number; description: string }>(this.apiUrl + "/update", product, { headers }).pipe(
+      tap(response => {
+        console.log(response);
+      })
+    );;
+  }
+
+  destroy(productId: BigInteger) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.delete<any>(`${this.apiUrl}/delete/${productId}`, { headers }).pipe(
+      tap(response => {
+        console.log(response);
+      })
+    );
+  }
 
 }

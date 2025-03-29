@@ -32,12 +32,14 @@
           <td>{{ product.categoryName }}</td>
           <td>{{ this.currency + product.price }}</td>
           <td>{{ product.description }}</td>
-          <td>{{ product.status }}</td>
+          <td>
+            <input type="checkbox" name="status" id="status" [checked]="product.status" class="switch">
+          </td>
           <td>
             <button class="btn action-btn btn-success" (click)="openEditModal(product)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <button class="btn action-btn btn-danger" (click)="deleteCategory(product.id)">
+            <button class="btn action-btn btn-danger" (click)="deleteProduct(product.id)">
               <i class="fa-solid fa-trash"></i>
             </button>
           </td>

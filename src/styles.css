@@ -279,3 +279,52 @@ body {
   color: #3bba0de6 !important;
   border: 1px solid #9ce382a1 !important;
 }
+
+
+/* BEGIN : SWITCH  */
+.switch {
+  position: relative;
+  height: 1.5rem;
+  width: 3rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 9999px;
+  background-color: rgba(255, 165, 0, 0.4); /* Light Orange */
+  transition: all 0.3s ease;
+}
+
+.switch:checked {
+  background-color: rgba(255, 102, 0, 1); /* Deep Orange */
+}
+
+.switch::before {
+  position: absolute;
+  content: "";
+  left: calc(1.5rem - 1.6rem);
+  top: calc(1.5rem - 1.6rem);
+  display: block;
+  height: 1.6rem;
+  width: 1.6rem;
+  cursor: pointer;
+  border: 1px solid rgba(255, 140, 0, 0.6); /* Medium Orange */
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.switch:hover::before {
+  box-shadow: 0 0 0px 8px rgba(255, 140, 0, 0.2);
+}
+
+.switch:checked:hover::before {
+  box-shadow: 0 0 0px 8px rgba(255, 102, 0, 0.2);
+}
+
+.switch:checked:before {
+  transform: translateX(100%);
+  border-color: rgba(255, 102, 0, 1);
+}
+
+/* END : SWITCH  */

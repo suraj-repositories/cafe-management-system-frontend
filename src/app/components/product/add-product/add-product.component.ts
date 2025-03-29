@@ -16,7 +16,7 @@ export class AddProductComponent {
   name: string = '';
   categories: any[] = [];
   categoryId: number = 1;
-  productId: number | null = null;
+  productId: bigint | null = null;
   price = 0;
   description = '';
   mode: 'add' | 'edit' = 'add';
@@ -26,23 +26,37 @@ export class AddProductComponent {
   @ViewChild('closeModalButton') closeModalButton!: ElementRef;
   @ViewChild('productNameInput') productNameInput!: ElementRef;
 
-  constructor(private productService: ProductService,private categoryService: CategoryService, private toastService: ToastService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private toastService: ToastService) {
     this.loadCategories();
   }
+  openForEdit(product: { id: bigint, name: string, categoryId: number, price: number, description: string }) {
 
-  openForAdd(){
+    this.mode = 'edit';
+    this.productId = product.id;
+    this.name = product.name;
+    this.categoryId = product.categoryId;
+    this.price = product.price;
+    this.description = product.description;
+
+    const modalElement = document.getElementById('productModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+  openForAdd() {
     this.mode = 'add';
     this.categoryId = 1;
     this.name = '';
 
     const modalElement = document.getElementById('productModal');
 
-    if(modalElement){
+    if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
     }
   }
-  loadCategories(){
+  loadCategories() {
     this.categoryService.getAll().subscribe({
       next: (response) => {
         this.categories = response;
@@ -61,7 +75,7 @@ export class AddProductComponent {
     }
   }
 
-  addProduct(){
+  addProduct() {
     this.productService.store(this.name, this.categoryId, this.price, this.description).subscribe({
       next: () => {
         this.closeModal();
@@ -75,9 +89,30 @@ export class AddProductComponent {
     });
   }
 
-  updateProduct(){
-
+  updateProduct() {
+    if (this.productId !== null) {
+      this.productService.update(
+        this.productId,
+        this.name,
+        this.categoryId,
+        this.price,
+        this.description
+      ).subscribe({
+        next: () => {
+          this.closeModal();
+          this.toastService.success('Product Updated!');
+          this.productAdded.emit();
+          this.name = '';
+        },
+        error: (error) => {
+          this.handleError(error);
+        },
+      });
+    } else {
+      this.toastService.error('Invalid product ID.');
+    }
   }
+
 
 
   closeModal(): void {

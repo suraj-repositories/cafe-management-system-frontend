@@ -3,7 +3,6 @@ import 'datatables.net';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryService } from '../../services/category.service';
 import { ToastService } from '../../services/toast.service';
-import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-category',
